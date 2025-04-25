@@ -19,7 +19,7 @@ public class FutureValueCalculator {
         double totalInterestEarned = futureValue - initialDeposit;
 
         //print out future value and interest earned
-        System.out.printf("The Future Value for your CD: $%.2f \nThe total interest earned on your CD is: $%.2f", futureValue, totalInterestEarned);
+        System.out.printf("The Future Value for your CD: $%,.2f \nThe total interest earned on your CD is: $%,.2f", futureValue, totalInterestEarned);
     }
 
     //Method that takes a message, shows it to user, and gets user input
