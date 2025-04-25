@@ -4,18 +4,10 @@ public class MortgageCalculator {
 
     public static void main(String[] args) {
 
-        //Create instance of scanner to get user info
-        Scanner myScanner = new Scanner(System.in);
-
         //region Ask user for data and store in variables
-        System.out.println("What is the principal(original amount borrowed) of your loan? ");
-        double principal = myScanner.nextDouble();
-
-        System.out.println("What is the interest rate percentage of your loan? ");
-        double interestRate = myScanner.nextDouble();
-
-        System.out.println("What is the length of your loan (in years)? ");
-        double loanLength = myScanner.nextDouble();
+        double principal = getUserInput("What is the principal(original amount borrowed) of your loan? ");
+        double interestRate = getUserInput("What is the interest rate percentage of your loan? ");
+        double loanLength = getUserInput("What is the length of your loan (in years)? ");
         //endregion
 
         // Find how many monthly payments
@@ -33,4 +25,13 @@ public class MortgageCalculator {
         System.out.println("Your total interest paid: \n" + "$" + totalInterestPaid);
 
     }
+
+    //method for getting user input
+    public static double getUserInput(String message){
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println(message);
+        String userInput = myScanner.nextLine();
+        return Double.parseDouble(userInput);
+    }
+
 }
