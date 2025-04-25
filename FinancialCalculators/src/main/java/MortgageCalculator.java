@@ -21,9 +21,8 @@ public class MortgageCalculator {
         double totalInterestPaid = principal * interestRate * loanLength;
 
         // Print out user's monthly payments and their total interest paid
-        System.out.println("\nYour monthly payment: \n" + "$" + monthlyPayments);
-        System.out.println("Your total interest paid: \n" + "$" + totalInterestPaid);
-
+        System.out.printf("Your monthly payment: \n" + "$%.2f%n", monthlyPayments);
+        System.out.printf("Your total interest paid: \n" + "$%.2f", totalInterestPaid);
     }
 
     //method for getting user input
@@ -33,5 +32,4 @@ public class MortgageCalculator {
         String userInput = myScanner.nextLine();
         return Double.parseDouble(userInput);
     }
-
 }
