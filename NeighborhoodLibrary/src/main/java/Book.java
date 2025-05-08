@@ -1,7 +1,6 @@
 public class Book {
 
     //declare variables
-
     int id;
     String isbn;
     String title;
@@ -16,8 +15,6 @@ public class Book {
         this.isCheckedOut = false;
         this.checkedOutTo = checkedOutTo;
     }
-
-
 
     //region Getters and Setters
     public int getId() {
@@ -65,6 +62,4 @@ public class Book {
         setCheckedOut(false);
         setCheckedOutTo("");
     }
-
-
 }
