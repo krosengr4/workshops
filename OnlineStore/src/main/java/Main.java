@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -25,4 +29,36 @@ public class Main {
 
         }
     }
+
+    public static ArrayList<Product> loadInventory() {
+
+        ArrayList<Product> storeInventory = new ArrayList<>();
+
+        try {
+            BufferedReader bufReader = new BufferedReader(new FileReader(Utils.filePath));
+
+            String input;
+
+            while ((input = bufReader.readLine()) != null) {
+                String[] lineData = input.split("\\|");
+
+                if (lineData[0].equals("SKU")) {
+                    continue;
+                }
+
+                String id = lineData[0];
+                String productName = lineData[1];
+                double productPrice = Double.parseDouble(lineData[2]);
+                String productDepartment = lineData[3];
+
+                Product newProduct = new Product(id, productName, productPrice, productDepartment);
+                storeInventory.add(newProduct);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return storeInventory;
+    }
+}
 }
