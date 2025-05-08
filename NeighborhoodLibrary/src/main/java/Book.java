@@ -13,7 +13,7 @@ public class Book {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
-        this.isCheckedOut = isCheckedOut;
+        this.isCheckedOut = false;
         this.checkedOutTo = checkedOutTo;
     }
 
@@ -45,7 +45,7 @@ public class Book {
         return isCheckedOut;
     }
     public void setCheckedOut(boolean checkedOut) {
-        isCheckedOut = checkedOut;
+        this.isCheckedOut = checkedOut;
     }
 
     public String getCheckedOutTo() {
@@ -56,6 +56,15 @@ public class Book {
     }
     //endregion
 
+    public void checkOut(String name) {
+        setCheckedOut(true);
+        setCheckedOutTo(name);
+    }
+
+    public void checkIn() {
+        setCheckedOut(false);
+        setCheckedOutTo("");
+    }
 
 
 }
