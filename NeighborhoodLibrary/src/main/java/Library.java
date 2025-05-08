@@ -26,6 +26,33 @@ o Go back to the home screen
 
     public static void main(String[] args) {
 
+        System.out.println("\t\t=======WELCOME TO THE NEIGHBORHOOD LIBRARY=======");
+        System.out.println("\n\t=======HOME SCREEN=======");
+
+        boolean ifContinue = true;
+
+        while (ifContinue) {
+            System.out.println("OPTIONS:\n1 - Show Available Books\n2 - Show Checked Out Books\n3 - Exit");
+            int userAction = Integer.parseInt(Utils.getUserInput("Enter a number: "));
+
+            switch (userAction) {
+                case 1 -> showAvailableBooks();
+                case 2 -> showCheckedOutBooks();
+                case 3 -> {
+                    System.out.println("Thank You for using the Neighborhood Library. Goodbye!");
+                    ifContinue = false;
+                }
+                default -> System.err.println("ERROR! Please Enter a number 1 - 3!");
+            }
+        }
+    }
+
+    public static void showAvailableBooks () {
+        System.out.println("Available Books");
+    }
+
+    public static void showCheckedOutBooks() {
+        System.out.println("Checked Out Books");
     }
 
 }
