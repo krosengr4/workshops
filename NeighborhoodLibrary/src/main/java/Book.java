@@ -16,7 +16,6 @@ public class Book {
         this.checkedOutTo = checkedOutTo;
     }
 
-
     //region Getters and Setters
     public int getId() {
         return id;

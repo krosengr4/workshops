@@ -100,6 +100,17 @@ o Go back to the home screen
 
     public static void showCheckedOutBooks() {
         System.out.println("Checked Out Books");
+
+        ArrayList<Book> checkedOutBooks = Utils.checkedOutBooks;
+        if (checkedOutBooks.isEmpty()) {
+            System.out.println("There aren't any books that are checked out.");
+        } else {
+            for (Book book : checkedOutBooks) {
+                System.out.printf("ID: %d | Title: %s | IBSN: %s | Checked Out By: %s\n",
+                        book.getId(), book.getTitle(), book.getIsbn(), book.getCheckedOutTo());
+            }
+        }
+
     }
 
     public static void bookCheckOut(ArrayList<Book> availableBooks, String userName) {
