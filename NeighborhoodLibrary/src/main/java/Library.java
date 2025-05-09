@@ -28,6 +28,8 @@ o Go back to the home screen
 
     public static void main(String[] args) {
 
+        ArrayList<Book> availableBooks = loadBookList();
+
         Utils.designLine(70, false);
         System.out.println("\t\tWELCOME TO THE NEIGHBORHOOD LIBRARY");
         Utils.designLine(70, true);
@@ -39,11 +41,11 @@ o Go back to the home screen
         boolean ifContinue = true;
 
         while (ifContinue) {
-            System.out.println("OPTIONS:\n1 - Show Available Books\n2 - Show Checked Out Books\n3 - Exit");
-            int userAction = Integer.parseInt(Utils.getUserInput("Enter a number: "));
+            System.out.println("\nOPTIONS:\n1 - Show Available Books\n2 - Show Checked Out Books\n3 - Exit");
+            int userAction = Integer.parseInt(Utils.getUserInput("Enter a number: ").trim());
 
             switch (userAction) {
-                case 1 -> showAvailableBooks(userName);
+                case 1 -> showAvailableBooks(userName, availableBooks);
                 case 2 -> showCheckedOutBooks();
                 case 3 -> {
                     System.out.println("\n\tThank You for using the Neighborhood Library. Goodbye!");
@@ -77,23 +79,51 @@ o Go back to the home screen
         availableBooks.add(new Book(18, "978-0-123456-09-6", "The Hunger Games", false, ""));
         availableBooks.add(new Book(19, "978-0-123456-03-4", "The Girl with the Dragon Tattoo", false, ""));
         availableBooks.add(new Book(20, "978-0-123456-04-6", "Where the Crawdads Sing", false, ""));
+
         return availableBooks;
     }
 
-    public static void showAvailableBooks(String userName) {
+    public static void showAvailableBooks(String userName, ArrayList<Book> availableBooks) {
         System.out.println("\t\tAVAILABLE BOOKS");
         Utils.designLine(40, false);
-
-        ArrayList<Book> availableBooks = loadBookList();
 
         for (Book book : availableBooks) {
             System.out.printf("ID: %d | Title: %s |IBSN: %s\n", book.getId(), book.getTitle(), book.getIsbn());
         }
-        Utils.pauseApp();
+
+        String userCheckOut = Utils.getUserInput("\nWould you like to check out a book? (Y or N): ").trim();
+
+        if (userCheckOut.equalsIgnoreCase("y")) {
+            bookCheckOut(availableBooks, userName);
+        }
     }
 
     public static void showCheckedOutBooks() {
         System.out.println("Checked Out Books");
+    }
+
+    public static void bookCheckOut(ArrayList<Book> availableBooks, String userName) {
+
+        String userBookChoice = Utils.getUserInput("Enter the ID of the book you want to checkout: ").trim();
+        int userBookID = Integer.parseInt(userBookChoice);
+
+        boolean isBookAvailable = false;
+
+        for (Book book : availableBooks) {
+            if (userBookID == book.getId()) {
+                book.checkOut(userName);
+                Utils.checkedOutBooks.add(book);
+                availableBooks.remove(book);
+
+                System.out.println("Success! You have checked out \"" + book.getTitle() + "\"");
+                isBookAvailable = true;
+                break;
+            }
+        }
+        if (!isBookAvailable) {
+            System.out.println("Sorry... We could not find a book with that ID.");
+        }
+        Utils.pauseApp();
     }
 
 }
