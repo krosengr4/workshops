@@ -16,4 +16,15 @@ public class Utils {
         myScanner.nextLine();
     }
 
+    public static void designLine(int numberOfLines, boolean isNewLine) {
+        StringBuilder underLine = new StringBuilder("=");
+
+        for (int i = 0; i < numberOfLines; i++) {
+            underLine.append("=");
+        }
+        if (isNewLine) {
+            underLine.append("\n");
+        }
+        System.out.println(underLine);
+    }
 }
