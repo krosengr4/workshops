@@ -26,9 +26,11 @@ o Check in the book with the specified id
 o Go back to the home screen
      */
 
+    public static ArrayList<Book> availableBooks;
+
     public static void main(String[] args) {
 
-        ArrayList<Book> availableBooks = loadBookList();
+        availableBooks = loadBookList();
 
         Utils.designLine(70, false);
         System.out.println("\t\tWELCOME TO THE NEIGHBORHOOD LIBRARY");
@@ -99,7 +101,8 @@ o Go back to the home screen
     }
 
     public static void showCheckedOutBooks() {
-        System.out.println("Checked Out Books");
+        System.out.println("\t\tCHECKED OUT BOOKS");
+        Utils.designLine(40, false);
 
         ArrayList<Book> checkedOutBooks = Utils.checkedOutBooks;
         if (checkedOutBooks.isEmpty()) {
@@ -108,6 +111,11 @@ o Go back to the home screen
             for (Book book : checkedOutBooks) {
                 System.out.printf("ID: %d | Title: %s | IBSN: %s | Checked Out By: %s\n",
                         book.getId(), book.getTitle(), book.getIsbn(), book.getCheckedOutTo());
+            }
+            String userCheckIn = Utils.getUserInput("\nWould you like to check a book back in? (Y or N): ").trim();
+
+            if (userCheckIn.equalsIgnoreCase("y")) {
+                bookCheckIn(checkedOutBooks);
             }
         }
 
@@ -133,6 +141,28 @@ o Go back to the home screen
         }
         if (!isBookAvailable) {
             System.out.println("Sorry... We could not find a book with that ID.");
+        }
+        Utils.pauseApp();
+    }
+
+    public static void bookCheckIn(ArrayList<Book> checkedOutBooks) {
+
+        int checkInID = Integer.parseInt(Utils.getUserInput("Enter the ID of the book you want to check in: "));
+        boolean isAvailable = false;
+
+        for (Book book : checkedOutBooks) {
+            if (checkInID == book.getId()) {
+                book.checkIn();
+                Utils.checkedOutBooks.remove(book);
+                availableBooks.add(book);
+
+                System.out.println("Success! Thank you for checking in \"" + book.getTitle() + "\"");
+                isAvailable = true;
+                break;
+            }
+        }
+        if(!isAvailable) {
+            System.out.println("There is no book with that ID being checked out.");
         }
         Utils.pauseApp();
     }
