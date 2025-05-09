@@ -1,15 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Utils {
+public class OnlineStoreUtils {
 
     //Create array list for checked out books
     public static ArrayList<Book> checkedOutBooks = new ArrayList<>();
 
-
-//    public static ArrayList<Book> availableBooks = Library.loadBookList();
-
-    public static String filePath = "Online-Store/src/main/resources/products.csv";
+    public static String filePath = "OnlineStore/src/main/resources/products.csv";
 
     static Scanner myScanner = new Scanner(System.in);
 

@@ -8,7 +8,7 @@ public class Cart {
         while (ifContinue) {
             System.out.println("\n\t\t---YOUR CART---");
             System.out.println("OPTIONS: \n\t1 - Display your cart \n\t2 - Check Out \n\t3 - Remove a product from the cart \n\t4 - Return to Home Page");
-            String userAction = Utils.getUserInput("Enter the number of what you'd like to do: ").trim();
+            String userAction = OnlineStoreUtils.getUserInput("Enter the number of what you'd like to do: ").trim();
 
             switch (userAction) {
                 case "1" -> displayCart();
@@ -35,7 +35,7 @@ public class Cart {
             }
             System.out.printf("\nTotal Amount: $%.2f", totalPrice);
         }
-        Utils.pauseApp();
+        OnlineStoreUtils.pauseApp();
     }
 
     public static void checkOut() {
@@ -46,18 +46,18 @@ public class Cart {
         System.out.println("\t---CHECKOUT---");
 
         System.out.println("OPTIONS:\n\tC - Credit \n\tD - Debit");
-        String userPayment = Utils.getUserInput("How would you like to pay: ").trim();
+        String userPayment = OnlineStoreUtils.getUserInput("How would you like to pay: ").trim();
 
         if (userPayment.equalsIgnoreCase("c") || userPayment.equalsIgnoreCase("d")) {
-            String userCCNumber = Utils.getUserInput("Enter your card number: ");
-            String userCCExpiration = Utils.getUserInput("Enter the expiration date: ");
-            String userCCCVV = Utils.getUserInput("Enter the 3 digit CVV: ");
+            String userCCNumber = OnlineStoreUtils.getUserInput("Enter your card number: ");
+            String userCCExpiration = OnlineStoreUtils.getUserInput("Enter the expiration date: ");
+            String userCCCVV = OnlineStoreUtils.getUserInput("Enter the 3 digit CVV: ");
         } else {
             System.err.println("Error! Please enter either c or d.");
         }
         System.out.println("Thank you for your purchase! You will be sent an email with details of your purchase!");
         userCart.clear();
-        Utils.pauseApp();
+        OnlineStoreUtils.pauseApp();
     }
 
     public static void removeItem() {
@@ -70,11 +70,11 @@ public class Cart {
             for (Product p : userCart) {
                 System.out.println(p.getName());
             }
-            String userRemove = Utils.getUserInput("\nEnter the name of the item you would like to remove: ").trim();
+            String userRemove = OnlineStoreUtils.getUserInput("\nEnter the name of the item you would like to remove: ").trim();
 
             userCart.removeIf(p -> userRemove.equalsIgnoreCase(p.getName()));
             System.out.println(userRemove + "has been removed.");
-            Utils.pauseApp();
+            OnlineStoreUtils.pauseApp();
         }
 
     }

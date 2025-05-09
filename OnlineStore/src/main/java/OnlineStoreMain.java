@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class Main {
+public class OnlineStoreMain {
 
     public static void main(String[] args) {
         System.out.println("\t\t_____WELCOME TO THE ONLINE STORE_____");
@@ -17,7 +17,7 @@ public class Main {
             System.out.println("\n\t---HOME PAGE---");
             //Get number user inputs and return it
             System.out.println("OPTIONS: \n\t1 - Inventory \n\t2 - Cart \n\t3 - Exit");
-            String userAction = Utils.getUserInput("Enter the number of what you'd like to do: ").trim();
+            String userAction = OnlineStoreUtils.getUserInput("Enter the number of what you'd like to do: ").trim();
 
 
             switch (userAction) {
@@ -35,7 +35,7 @@ public class Main {
         ArrayList<Product> storeInventory = new ArrayList<>();
 
         try {
-            BufferedReader bufReader = new BufferedReader(new FileReader(Utils.filePath));
+            BufferedReader bufReader = new BufferedReader(new FileReader(OnlineStoreUtils.filePath));
 
             String input;
 

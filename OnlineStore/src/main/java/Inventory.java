@@ -11,7 +11,7 @@ public class Inventory {
         while (ifContinue) {
             System.out.println("\n\t\t---INVENTORY---");
             System.out.println("OPTIONS: \n\t1 - Display All Products \n\t2 - Search For Product \n\t3 - Add Product to Cart \n\t4 - Return to Home Page");
-            String userAction = Utils.getUserInput("Enter the number of what you'd like to do: ").trim();
+            String userAction = OnlineStoreUtils.getUserInput("Enter the number of what you'd like to do: ").trim();
 
             switch (userAction) {
                 case "1" -> displayProducts();
@@ -25,7 +25,7 @@ public class Inventory {
 
     public static void displayProducts() {
         System.out.println("\t---ALL PRODUCTS---");
-        ArrayList<Product> inventory = Main.loadInventory();
+        ArrayList<Product> inventory = OnlineStoreMain.loadInventory();
 
         if (inventory.isEmpty()) {
             System.out.println("We do not have any products at the moment.");
@@ -34,30 +34,30 @@ public class Inventory {
         for (Product p : inventory) {
             System.out.println("Product Name: " + p.getName() + "\nPrice : $" + p.getPrice());
         }
-        Utils.pauseApp();
+        OnlineStoreUtils.pauseApp();
     }
 
     public static void searchProduct() {
 
-        ArrayList<Product> inventory = Main.loadInventory();
+        ArrayList<Product> inventory = OnlineStoreMain.loadInventory();
 
-        String productSearch = Utils.getUserInput("Enter a product name: ");
+        String productSearch = OnlineStoreUtils.getUserInput("Enter a product name: ");
 
         for (Product p : inventory) {
             if (productSearch.equalsIgnoreCase(p.getName())) {
                 System.out.println("\nIn Stock: \n" + p.getName() + " $" + p.getPrice());
             }
         }
-        Utils.pauseApp();
+        OnlineStoreUtils.pauseApp();
     }
 
     public static void addToCart() {
 
-        ArrayList<Product> inventory = Main.loadInventory();
+        ArrayList<Product> inventory = OnlineStoreMain.loadInventory();
         boolean continueToAdd = true;
 
         while (continueToAdd) {
-            String productToAdd = Utils.getUserInput("Enter the product you would like to add: ").trim();
+            String productToAdd = OnlineStoreUtils.getUserInput("Enter the product you would like to add: ").trim();
 
             for (Product p : inventory) {
                 if (productToAdd.equalsIgnoreCase(p.getName())) {
@@ -66,8 +66,8 @@ public class Inventory {
                     System.out.println("Success! You have added " + p.getName() + " to your cart!");
                 }
             }
-            Utils.pauseApp();
-            String userOption = Utils.getUserInput("Would you like to add another item? (Y or N): ").trim();
+            OnlineStoreUtils.pauseApp();
+            String userOption = OnlineStoreUtils.getUserInput("Would you like to add another item? (Y or N): ").trim();
             if (userOption.equalsIgnoreCase("n")) {
                 continueToAdd = false;
             } else if (!userOption.equalsIgnoreCase("y")){
