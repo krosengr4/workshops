@@ -55,12 +55,20 @@ public class Book {
     //endregion
 
     public void checkOut(String name) {
-        setCheckedOut(true);
-        setCheckedOutTo(name);
+        if (!this.isCheckedOut()) {
+            setCheckedOut(true);
+            setCheckedOutTo(name);
+        } else {
+            System.err.println("This book is already checked out!");
+        }
     }
 
     public void checkIn() {
-        setCheckedOut(false);
-        setCheckedOutTo("");
+        if(isCheckedOut()) {
+            setCheckedOut(false);
+            setCheckedOutTo("");
+        } else {
+            System.err.println("This book hasn't been checked out!");
+        }
     }
 }
